@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Track Your Gyan</string>
+    <string name="fill_the_details_to_sign_in_account">Fill the details to sign in account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="fill_the_details_to_create_your_account">Fill the details to create your account</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="enter_your_email_address_registered_with_us">Enter your Email Address registered with us</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

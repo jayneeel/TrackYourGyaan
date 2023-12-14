@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="10dp"
+    android:backgroundTint="#E6E5E6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:id="@+id/announcementTitle"
+                android:textSize="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Quiz for Maths"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/black"
+                android:id="@+id/timestamp"
+                android:textSize="15dp"
+                android:textFontWeight="700"
+                android:fontFamily="@font/poppins"
+                android:text="06th Dec 23, 12:00AM"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:layout_marginVertical="20dp"
+                android:id="@+id/announcementMessage"
+                android:textSize="16dp"
+                android:fontFamily="@font/poppins"
+                android:text="Quiz and assignment for maths is uploaded and will be active till midnight."/>
+
+
+
+        </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

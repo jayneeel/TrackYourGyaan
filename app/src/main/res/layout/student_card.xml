@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="30dp"
+    android:layout_margin="10dp"
+    app:cardElevation="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/student_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/user"
+            app:riv_corner_radius="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jayneel Kanungo"
+            android:textStyle="bold"
+            android:id="@+id/student_name"
+            android:layout_toRightOf="@+id/student_img"
+            android:fontFamily="@font/poppins"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Third Year | Computer Engineering"
+            android:id="@+id/year_dept"
+            android:layout_toEndOf="@+id/student_img"
+            android:layout_marginVertical="5dp"
+            android:layout_below="@id/student_name"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/black"
+            android:textSize="11dp"/>
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

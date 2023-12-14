@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    android:background="@color/bg_color"
+    tools:context=".splash.NavigationActivity">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/primary_blue"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/signin_btn"
+            android:padding="15dp"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/primary_blue"
+            android:layout_marginBottom="30dp"
+            android:drawableRight="@drawable/arrow_right"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/sign_in"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_btn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:padding="15dp"
+            app:cornerRadius="20dp"
+            android:textColor="@color/primary_blue"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawableTint="@color/primary_blue"
+            app:strokeColor="@color/primary_blue"
+            app:strokeWidth="1dp"
+            android:fontFamily="@font/poppins_medium"
+
+            android:text="@string/sign_up"/>
+    </LinearLayout>
+
+</RelativeLayout>

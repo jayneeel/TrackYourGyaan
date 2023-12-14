@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "342298418255",
+    "project_id": "trackyourgyan",
+    "storage_bucket": "trackyourgyan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:342298418255:android:c4aff48d28ea71f4499e3a",
+        "android_client_info": {
+          "package_name": "com.example.trackyourgyan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFCvPTCFdaaAOVWj2gpnh4U7e75LMcsHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
