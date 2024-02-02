@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/list_question_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is AWT ?"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/correct_ans"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Abstract Window Toolkit"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/chapter_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Chapter 1"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="12sp"/>
+
+</LinearLayout>

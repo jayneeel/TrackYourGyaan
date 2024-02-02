@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginVertical="-10dp"
+        app:cardElevation="20dp"
+        android:layout_marginTop="-10dp"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="#B3E5FC">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/level_status_text"
+            android:text="LEVEL 1 COMPLETED"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="25dp"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/completed_gif"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/completed"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="RESULT"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="36dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detailed_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="#131F34"
+            android:drawableRight="@drawable/arrow_right"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="15dp"
+            android:text="View Detailed Result"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="───────── OR ─────────"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/test_again_btn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="15dp"
+            android:text="Take a test again"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -18,7 +18,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences settings = getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
-        Toast.makeText(this, ""+settings.getBoolean("isLoggedIn", false), Toast.LENGTH_SHORT).show();
         if(settings.getBoolean("isLoggedIn", false)){
             new Handler().postDelayed(new Runnable() {
                 @Override
