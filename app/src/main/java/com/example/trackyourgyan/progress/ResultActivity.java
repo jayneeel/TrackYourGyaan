@@ -1,4 +1,4 @@
-package com.example.trackyourgyan;
+package com.example.trackyourgyan.progress;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
 import com.example.trackyourgyan.student.StudentDashboardActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import pl.droidsonroids.gif.GifImageView;

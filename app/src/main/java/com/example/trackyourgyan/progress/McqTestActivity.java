@@ -1,4 +1,4 @@
-package com.example.trackyourgyan;
+package com.example.trackyourgyan.progress;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.Arrays;
 import java.util.HashMap;

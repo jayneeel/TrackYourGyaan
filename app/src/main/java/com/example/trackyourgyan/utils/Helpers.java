@@ -15,6 +15,11 @@ public class Helpers {
 
     public String[] FIRST_YEAR_SUBJECTS = {"Physics"};
     public String[] THIRD_YEAR_SUBJECTS = {"Advance Java", "EVS", "Management", "ETI"};
+    public String[] PHYSICS_CHAPTERS = {"Units and Measurements", "Electricity,magnetism and semiconductors", "Heat and Optics"};
+    public String[] ADVANCE_JAVA_CHAPTERS = {"Abstract windowing Toolkit (AWT)", " Swing", "Event Handling", "Networking Basics", "Database", "Servlets"};
+    public String[] ETI_CHAPTERS = {"Artificial intelligence", " Internet of Things", "Basics of digital forensics", "Digital Evidence", "Basics of Hacking", "Types of hacking"};
+    public String[] MANAGEMENT_CHAPTERS = {"Introduction to Management", " Planning and Organizing", "Directing and Controlling ", "Safety Management", "Legislative Acts"};
+    public String[] EVS_CHAPTERS = {"Environment", "Energy Resources", "Ecosystem and Biodiversity", "Environmental Pollution", "Social issues and Environmental education"};
 
     Gson gson = new Gson();
 

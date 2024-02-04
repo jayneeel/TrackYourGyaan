@@ -7,40 +7,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.trackyourgyan.McqTestActivity;
+import com.example.trackyourgyan.ChapterSelectionActivity;
 import com.example.trackyourgyan.R;
-import com.example.trackyourgyan.auth.SignUpActivity;
-import com.example.trackyourgyan.objects.Announcement;
 import com.example.trackyourgyan.objects.Question;
 import com.example.trackyourgyan.objects.Quiz;
 import com.example.trackyourgyan.objects.Student;
 import com.example.trackyourgyan.utils.Helpers;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
 
-import java.io.Serializable;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -112,9 +100,15 @@ public class ProgressFragment extends Fragment {
                                 }
                             }
                         });
+            }
+        });
 
-                Log.d("******************************","END______________________________");
 
+        chapterWiseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(view.getContext(), ChapterSelectionActivity.class);
+                startActivity(intent);
             }
         });
 

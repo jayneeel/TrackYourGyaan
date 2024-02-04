@@ -1,11 +1,11 @@
-package com.example.trackyourgyan;
+package com.example.trackyourgyan.progress;
+
+import android.os.Bundle;
+import android.widget.ExpandableListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ExpandableListView;
-
+import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.adapters.DetailedResultAdapter;
 import com.example.trackyourgyan.objects.Quiz;
 
@@ -30,6 +30,5 @@ public class DetailedResultActivity extends AppCompatActivity {
         expandableListView = findViewById(R.id.expandable_result);
         detailedResultAdapter = new DetailedResultAdapter(this, quiz, hashMap);
         expandableListView.setAdapter(detailedResultAdapter);
-        Log.d("**** DETAILED ****", hashMap.keySet().toString());
     }
 }

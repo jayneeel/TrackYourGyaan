@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.trackyourgyan.McqTestActivity;
+import com.example.trackyourgyan.progress.McqTestActivity;
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.about_us.AboutUsActivity;
 import com.example.trackyourgyan.objects.Student;
