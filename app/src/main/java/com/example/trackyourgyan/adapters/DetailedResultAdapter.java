@@ -21,7 +21,8 @@ public class DetailedResultAdapter extends BaseExpandableListAdapter {
     private Context context;
     private Quiz quiz;
     public HashMap<Integer, List<String>> resultMap;
-    private String questionText, correctAnswer, selectedAnswer, chapter, status;
+    private String questionText, correctAnswer, selectedAnswer, chapter, status, finalTxt;
+
 
     public DetailedResultAdapter(Context context, Quiz quiz, HashMap<Integer, List<String>> resultMap) {
         this.context = context;
@@ -86,20 +87,23 @@ public class DetailedResultAdapter extends BaseExpandableListAdapter {
         convertView = layoutInflater.inflate(R.layout.list_item, null);
 
         questionText = quiz.quizQuestions.get(groupPosition).question;
-        correctAnswer = resultMap.get(groupPosition+1).get(1);
+        correctAnswer = quiz.quizQuestions.get(groupPosition).correct;
+        selectedAnswer = resultMap.get(groupPosition+1).get(1);
         status = resultMap.get(groupPosition+1).get(0);
-        chapter = resultMap.get(groupPosition+1).get(2);
+        chapter = "Chapter "+resultMap.get(groupPosition+1).get(2);
         TextView listQuestionTxt = (TextView) convertView.findViewById(R.id.list_question_txt);
         TextView listAnswerTxt = (TextView) convertView.findViewById(R.id.correct_ans);
         TextView listChapterTxt = (TextView) convertView.findViewById(R.id.chapter_txt);
         listQuestionTxt.setText(questionText);
-        listAnswerTxt.setText(String.format("Correct Answer : %s", correctAnswer));
         listChapterTxt.setText(chapter);
+        finalTxt = "Correct Answer : "+correctAnswer;
         if (status.equals("CORRECT")){
             convertView.setBackgroundColor(Color.parseColor("#87FFC5"));
         }else{
+            finalTxt = "Correct Answer : "+correctAnswer+"\nYour Answer :"+selectedAnswer;
             convertView.setBackgroundColor(Color.parseColor("#FF4C4C"));
         }
+        listAnswerTxt.setText(finalTxt);
         return convertView;
     }
 

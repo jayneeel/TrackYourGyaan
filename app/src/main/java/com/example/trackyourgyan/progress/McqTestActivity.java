@@ -25,7 +25,8 @@ public class McqTestActivity extends AppCompatActivity {
     int currentIndex = -1, questionNumber, correctAnsCount =0;
     String selectedAns = "";
     HashMap<Integer, List<String>> resultMap = new HashMap<>();
-    List<Map<String, String>> resultList;
+
+    List<String> weakChaptersList;
     Map<String, String> questionResult;
 
 
@@ -86,7 +87,7 @@ public class McqTestActivity extends AppCompatActivity {
         if (result.equals("CORRECT")){
             correctAnsCount += 1;
         }
-        resultMap.put(questionNumber, Arrays.asList(result, selectedAns,"CHAPTER_1"));
+        resultMap.put(questionNumber, Arrays.asList(result, selectedAns,String.valueOf(quiz.quizQuestions.get(currentIndex).chapter)));
         Log.d("EXAM***********", "checkAns: "+resultMap.keySet());
         Log.d("EXAM***********", "checkAns: "+resultMap.values());
     }

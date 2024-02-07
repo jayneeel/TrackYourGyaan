@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
 import com.example.trackyourgyan.student.StudentDashboardActivity;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -24,6 +27,9 @@ public class ResultActivity extends AppCompatActivity {
     int correctAnsCount;
     Button testAgainBtn, detailedResultBtn;
     GifImageView gifImageView;
+    FirebaseFirestore db;
+    String userEmail;
+    Map<String, String> result=new HashMap<>();
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,11 +45,19 @@ public class ResultActivity extends AppCompatActivity {
         levelStatus = findViewById(R.id.level_status_text);
         gifImageView = findViewById(R.id.completed_gif);
         detailedResultBtn = findViewById(R.id.detailed_result);
+        db = FirebaseFirestore.getInstance();
+        SharedPreferences settings = getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
+        userEmail = settings.getString("studentEmail",null);
+        result.put("correct_ans", String.valueOf(correctAnsCount));
         score.setText(correctAnsCount+" / 15");
 
         if (!(correctAnsCount >= 7)){
             gifImageView.setImageResource(R.drawable.try_again);
             levelStatus.setText("You couldn't pass this level");
+            result.put("result", "FAIL");
+        }else{
+            result.put("result", "PASS");
+            db.collection("results").document(userEmail).collection(quiz.title).add(result);
         }
         testAgainBtn.setOnClickListener(new View.OnClickListener() {
             @Override

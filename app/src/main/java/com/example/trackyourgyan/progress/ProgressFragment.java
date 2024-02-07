@@ -1,6 +1,7 @@
 package com.example.trackyourgyan.progress;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
-import com.example.trackyourgyan.ChapterSelectionActivity;
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Question;
 import com.example.trackyourgyan.objects.Quiz;
@@ -29,7 +29,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ProgressFragment extends Fragment {
@@ -38,6 +41,7 @@ public class ProgressFragment extends Fragment {
     private MaterialButton quickTestBtn, chapterWiseBtn;
     private AutoCompleteTextView subjectSpinner;
     private ArrayAdapter<String> subjectAdapter;
+    Map<String, String> subjectDbMap;
     private Intent intent;
     public ArrayList<Question> questionsList;
     private FirebaseFirestore db;
@@ -68,7 +72,6 @@ public class ProgressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
         db = FirebaseFirestore.getInstance();
         questionsList = new ArrayList<>();
@@ -77,13 +80,18 @@ public class ProgressFragment extends Fragment {
         subjectSpinner.setAdapter(subjectAdapter);
         quickTestBtn = view.findViewById(R.id.option_one_btn);
         chapterWiseBtn = view.findViewById(R.id.option_two_btn);
+        subjectDbMap = new Helpers().getSubjectDbMap();
 
         quickTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ProgressDialog progressdialog = new ProgressDialog(view.getContext());
+                progressdialog.setMessage("Your test is Loading...");
+                progressdialog.setCancelable(false);
+                progressdialog.show();
                 db = FirebaseFirestore.getInstance();
-                Log.d("******************************","STARTED______________________________");
-                db.collection("ajp").get()
+                db.collection(subjectDbMap.get(subjectSpinner.getText().toString())).get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -92,7 +100,8 @@ public class ProgressFragment extends Fragment {
                                         Question question = queryDocumentSnapshot.toObject(Question.class);
                                         questionsList.add(question);
                                     }
-                                    Log.d("---------------*---------------", "onComplete: "+questionsList.size());
+                                    Collections.shuffle(questionsList);
+                                    progressdialog.dismiss();
                                     Quiz quiz = new Quiz(String.valueOf(System.currentTimeMillis()), subjectSpinner.getText().toString(), 5,questionsList);
                                     intent = new Intent(view.getContext(),McqTestActivity.class);
                                     intent.putExtra("quiz",quiz);
@@ -108,6 +117,7 @@ public class ProgressFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 intent = new Intent(view.getContext(), ChapterSelectionActivity.class);
+                intent.putExtra("selected_subject", subjectSpinner.getText().toString());
                 startActivity(intent);
             }
         });

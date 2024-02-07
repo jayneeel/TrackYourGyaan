@@ -56,7 +56,7 @@ public class StudentDashboardActivity extends AppCompatActivity implements Botto
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         db = FirebaseFirestore.getInstance();
         SharedPreferences settings = getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
-        email = settings.getString("studentEmail","");
+        email = settings.getString("studentEmail",null);
 
         db.collection("students").document(email).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

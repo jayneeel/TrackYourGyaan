@@ -9,7 +9,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Helpers {
 
@@ -20,6 +23,27 @@ public class Helpers {
     public String[] ETI_CHAPTERS = {"Artificial intelligence", " Internet of Things", "Basics of digital forensics", "Digital Evidence", "Basics of Hacking", "Types of hacking"};
     public String[] MANAGEMENT_CHAPTERS = {"Introduction to Management", " Planning and Organizing", "Directing and Controlling ", "Safety Management", "Legislative Acts"};
     public String[] EVS_CHAPTERS = {"Environment", "Energy Resources", "Ecosystem and Biodiversity", "Environmental Pollution", "Social issues and Environmental education"};
+
+    Map<String, List<String>> subjectChaptersMap = new HashMap<>();
+    Map<String, String> subjectDbMap = new HashMap<>();
+
+    public Map<String, String> getSubjectDbMap() {
+        subjectDbMap.put("Physics", "physics");
+        subjectDbMap.put("Advance Java", "ajp");
+        subjectDbMap.put("EVS", "evs");
+        subjectDbMap.put("Management", "management");
+        subjectDbMap.put("ETI", "eti");
+        return subjectDbMap;
+    }
+
+    public Map<String, List<String>> getSubjectChaptersMap() {
+        subjectChaptersMap.put("Physics", Arrays.asList(PHYSICS_CHAPTERS));
+        subjectChaptersMap.put("Advance Java", Arrays.asList(ADVANCE_JAVA_CHAPTERS));
+        subjectChaptersMap.put("EVS", Arrays.asList(EVS_CHAPTERS));
+        subjectChaptersMap.put("Management", Arrays.asList(MANAGEMENT_CHAPTERS));
+        subjectChaptersMap.put("ETI", Arrays.asList(ETI_CHAPTERS));
+        return subjectChaptersMap;
+    }
 
     Gson gson = new Gson();
 
