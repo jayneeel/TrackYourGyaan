@@ -1,5 +1,6 @@
 package com.example.trackyourgyan.student;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -71,6 +72,7 @@ public class StudentDashboardFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         db.collection("announcements").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {

@@ -80,7 +80,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/option_two_btn"
+            android:id="@+id/proceed_chapter_btn"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

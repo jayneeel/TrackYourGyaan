@@ -22,7 +22,7 @@ public class McqTestActivity extends AppCompatActivity {
     Quiz quiz;
     TextView questionTxt, questionCount;
     Button optionA, optionB, optionC, optionD, nextBtn;
-    int currentIndex = -1, questionNumber, correctAnsCount =0;
+    int currentIndex = -1, questionNumber, correctAnsCount = 0;
     String selectedAns = "";
     HashMap<Integer, List<String>> resultMap = new HashMap<>();
 
@@ -47,7 +47,7 @@ public class McqTestActivity extends AppCompatActivity {
     }
 
     private void loadQuestions() {
-        if (questionNumber == 15){
+        if (questionNumber == quiz.quizQuestions.size()){
             Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
             intent.putExtra("result", resultMap);
             intent.putExtra("quizData", quiz);
@@ -60,7 +60,7 @@ public class McqTestActivity extends AppCompatActivity {
         resetColor();
         currentIndex++;
         questionNumber = currentIndex +1;
-        questionCount.setText(String.format("%d / 15", questionNumber));
+        questionCount.setText(String.format("%d / %d", questionNumber, quiz.quizQuestions.size()));
         questionTxt.setText(quiz.quizQuestions.get(currentIndex).question);
         optionA.setText(quiz.quizQuestions.get(currentIndex).option_a);
         optionB.setText(quiz.quizQuestions.get(currentIndex).option_b);

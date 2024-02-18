@@ -90,7 +90,6 @@ public class ProgressFragment extends Fragment {
                 progressdialog.setMessage("Your test is Loading...");
                 progressdialog.setCancelable(false);
                 progressdialog.show();
-                db = FirebaseFirestore.getInstance();
                 db.collection(subjectDbMap.get(subjectSpinner.getText().toString())).get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

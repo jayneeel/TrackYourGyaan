@@ -24,7 +24,7 @@ public class ResultActivity extends AppCompatActivity {
     Quiz quiz;
     HashMap hashMap;
     TextView score, levelStatus;
-    int correctAnsCount;
+    int correctAnsCount, totalQuestions;
     Button testAgainBtn, detailedResultBtn;
     GifImageView gifImageView;
     FirebaseFirestore db;
@@ -45,13 +45,14 @@ public class ResultActivity extends AppCompatActivity {
         levelStatus = findViewById(R.id.level_status_text);
         gifImageView = findViewById(R.id.completed_gif);
         detailedResultBtn = findViewById(R.id.detailed_result);
+        totalQuestions = quiz.quizQuestions.size();
         db = FirebaseFirestore.getInstance();
         SharedPreferences settings = getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
         userEmail = settings.getString("studentEmail",null);
         result.put("correct_ans", String.valueOf(correctAnsCount));
-        score.setText(correctAnsCount+" / 15");
+        score.setText(correctAnsCount+" / "+totalQuestions);
 
-        if (!(correctAnsCount >= 7)){
+        if (!(correctAnsCount >= (totalQuestions/2))){
             gifImageView.setImageResource(R.drawable.try_again);
             levelStatus.setText("You couldn't pass this level");
             result.put("result", "FAIL");
@@ -77,11 +78,6 @@ public class ResultActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
     }
 }
