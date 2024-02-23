@@ -21,11 +21,10 @@ import java.util.Map;
 public class McqTestActivity extends AppCompatActivity {
     Quiz quiz;
     TextView questionTxt, questionCount;
-    Button optionA, optionB, optionC, optionD, nextBtn;
+    Button optionA, optionB, optionC, optionD, nextBtn, backBtn;
     int currentIndex = -1, questionNumber, correctAnsCount = 0;
     String selectedAns = "";
     HashMap<Integer, List<String>> resultMap = new HashMap<>();
-
     List<String> weakChaptersList;
     Map<String, String> questionResult;
 
@@ -42,21 +41,15 @@ public class McqTestActivity extends AppCompatActivity {
         optionC = findViewById(R.id.ans_C);
         optionD = findViewById(R.id.ans_D);
         nextBtn = findViewById(R.id.next_btn);
+        backBtn = findViewById(R.id.previous_question_btn);
         questionCount = findViewById(R.id.question_count_txt);
         loadQuestions();
     }
 
     private void loadQuestions() {
         if (questionNumber == quiz.quizQuestions.size()){
-            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-            intent.putExtra("result", resultMap);
-            intent.putExtra("quizData", quiz);
-            intent.putExtra("correctAnsCount", correctAnsCount);
-//            intent.putCharSequenceArrayListExtra("resultData", resultList);
-            startActivity(intent);
+            endTest();
         }
-
-
         resetColor();
         currentIndex++;
         questionNumber = currentIndex +1;
@@ -66,6 +59,15 @@ public class McqTestActivity extends AppCompatActivity {
         optionB.setText(quiz.quizQuestions.get(currentIndex).option_b);
         optionC.setText(quiz.quizQuestions.get(currentIndex).option_c);
         optionD.setText(quiz.quizQuestions.get(currentIndex).option_d);
+    }
+
+    private void endTest() {
+        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+        intent.putExtra("result", resultMap);
+        intent.putExtra("quizData", quiz);
+        intent.putExtra("correctAnsCount", correctAnsCount);
+//            intent.putCharSequenceArrayListExtra("resultData", resultList);
+        startActivity(intent);
     }
 
 

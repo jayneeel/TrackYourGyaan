@@ -53,11 +53,9 @@ public class StudentDashboardActivity extends AppCompatActivity implements Botto
         progressFragment = new ProgressFragment();
         bundle = new Bundle();
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(Color.WHITE);
         actionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         db = FirebaseFirestore.getInstance();
         SharedPreferences settings = getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
