@@ -18,6 +18,7 @@ import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.about_us.AboutUsActivity;
 import com.example.trackyourgyan.objects.Student;
 import com.example.trackyourgyan.progress.ProgressFragment;
+import com.example.trackyourgyan.progress.TrackResultActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -91,6 +92,10 @@ public class StudentDashboardActivity extends AppCompatActivity implements Botto
                 }
                 else if(item.getItemId() == R.id.drawer_about_us){
                     startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
+                    return true;
+                }
+                else if(item.getItemId() == R.id.drawer_results){
+                    startActivity(new Intent(getApplicationContext(), TrackResultActivity.class));
                     return true;
                 }
 

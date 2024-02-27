@@ -67,5 +67,10 @@ public class Helpers {
         }
     }
 
+    public String getTimestamp(){
+        Long tsLong = System.currentTimeMillis()/1000;
+        return tsLong.toString();
+    }
+
 
 }

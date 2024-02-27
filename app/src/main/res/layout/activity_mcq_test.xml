@@ -173,7 +173,7 @@
             android:id="@+id/previous_question_btn"
             android:fontFamily="@font/poppins"
             android:layout_gravity="end"
-            android:onClick="optionSelection"
+            android:onClick="previousQuestion"
             android:paddingVertical="12dp"
             android:layout_marginVertical="4dp"
             android:enabled="false"

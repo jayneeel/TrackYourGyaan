@@ -1,6 +1,9 @@
 package com.example.trackyourgyan.student;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,11 +37,12 @@ import java.util.ArrayList;
 public class StudentDashboardFragment extends Fragment {
 
     private Student student;
-    private TextView welcomeStudentName;
+    private TextView welcomeStudentName, currentLevel, percentage;
     private FirebaseFirestore db;
     private AnnouncementAdapter adapter;
     private RecyclerView recyclerView;
 
+int currentLevelNum;
     private ArrayList<Announcement> announcementArrayList;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -60,7 +64,13 @@ public class StudentDashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_dashboard, container, false);
-
+        SharedPreferences settings = view.getContext().getSharedPreferences("TYG_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = settings.edit();
+        currentLevel = view.findViewById(R.id.currentLevel);
+        percentage = view.findViewById(R.id.percentage_overall);
+        currentLevelNum = settings.getInt("currentLevel",0);
+        currentLevel.setText(String.valueOf(currentLevelNum));
+        percentage.setText(String.valueOf(Math.round(((currentLevelNum * 100) / 15)))+"%");
         welcomeStudentName = view.findViewById(R.id.dashboardName);
         collapsingToolbarLayout = view.findViewById(R.id.collapse_toolbar);
         welcomeStudentName.setText("Hi\n"+student.getFirstName()+"!");

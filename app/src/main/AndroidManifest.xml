@@ -21,6 +21,9 @@
         android:theme="@style/Theme.TrackYourGyan"
         tools:targetApi="31">
         <activity
+            android:name=".progress.TrackResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".progress.ChapterSelectionActivity"
             android:exported="false" />
         <activity

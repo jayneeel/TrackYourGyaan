@@ -5,14 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +24,7 @@ import java.util.Map;
 
 public class McqTestActivity extends AppCompatActivity {
     Quiz quiz;
-    TextView questionTxt, questionCount;
+    TextView questionTxt, questionCount, timer;
     Button optionA, optionB, optionC, optionD, nextBtn, backBtn;
     int currentIndex = -1, questionNumber, correctAnsCount = 0;
     String selectedAns = "";
@@ -36,6 +40,7 @@ public class McqTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mcq_test);
         quiz = (Quiz) getIntent().getSerializableExtra("quiz");
         questionTxt = findViewById(R.id.question_txt);
+        timer = findViewById(R.id.timer);
         optionA = findViewById(R.id.ans_A);
         optionB = findViewById(R.id.ans_B);
         optionC = findViewById(R.id.ans_C);
@@ -43,16 +48,38 @@ public class McqTestActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.next_btn);
         backBtn = findViewById(R.id.previous_question_btn);
         questionCount = findViewById(R.id.question_count_txt);
-        loadQuestions();
+        loadQuestions(1);
+        new CountDownTimer(900000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Used for formatting digit to be in 2 digits only
+                NumberFormat f = new DecimalFormat("00");
+                long hour = (millisUntilFinished / 3600000) % 24;
+                long min = (millisUntilFinished / 60000) % 60;
+                long sec = (millisUntilFinished / 1000) % 60;
+                timer.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
+            }
+            // When the task is over it will print 00:00:00 there
+            public void onFinish() {
+                timer.setText("00:00:00");
+                Toast.makeText(McqTestActivity.this, "Times Up!", Toast.LENGTH_SHORT).show();
+                endTest();
+            }
+        }.start();
     }
 
-    private void loadQuestions() {
+    private void loadQuestions(int index) {
+        if (currentIndex >= 1){
+            backBtn.setEnabled(true);
+        }
         if (questionNumber == quiz.quizQuestions.size()){
+            Log.d("*McqTestActivity*", "loadQuestions: *********EVERYTHING GOOOD");
             endTest();
         }
         resetColor();
-        currentIndex++;
+        currentIndex = currentIndex + index;
         questionNumber = currentIndex +1;
+        Log.d("******* MCQ TEST *******", String.valueOf(currentIndex));
+        Log.d("******* MCQ TEST *******", String.valueOf(questionNumber));
         questionCount.setText(String.format("%d / %d", questionNumber, quiz.quizQuestions.size()));
         questionTxt.setText(quiz.quizQuestions.get(currentIndex).question);
         optionA.setText(quiz.quizQuestions.get(currentIndex).option_a);
@@ -75,7 +102,7 @@ public class McqTestActivity extends AppCompatActivity {
         Button button = (Button) view;
         if (button.getId() == R.id.next_btn){
             checkAns(selectedAns);
-            loadQuestions();
+            loadQuestions(1);
         }else{
             resetColor();
             button.setBackgroundColor(getColor(R.color.orange));
@@ -99,5 +126,10 @@ public class McqTestActivity extends AppCompatActivity {
         optionB.setBackgroundColor(getColor(R.color.gray));
         optionC.setBackgroundColor(getColor(R.color.gray));
         optionD.setBackgroundColor(getColor(R.color.gray));
+    }
+
+    public void previousQuestion(View view) {
+        resetColor();
+        loadQuestions(-1);
     }
 }

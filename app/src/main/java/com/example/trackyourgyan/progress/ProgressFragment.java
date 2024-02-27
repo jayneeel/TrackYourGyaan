@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Question;
@@ -43,7 +44,8 @@ public class ProgressFragment extends Fragment {
     private ArrayAdapter<String> subjectAdapter;
     Map<String, String> subjectDbMap;
     private Intent intent;
-    public ArrayList<Question> questionsList;
+    public ArrayList<Question> questionsList, finalQuestionList;
+    TextView viewResults;
     private FirebaseFirestore db;
 
 
@@ -75,6 +77,8 @@ public class ProgressFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_progress, container, false);
         db = FirebaseFirestore.getInstance();
         questionsList = new ArrayList<>();
+        finalQuestionList = new ArrayList<>();
+        viewResults = view.findViewById(R.id.view_results);
         subjectSpinner = view.findViewById(R.id.subjects_dropdown);
         subjectAdapter = new ArrayAdapter<String>(view.getContext(), R.layout.dropdown_item, subs);
         subjectSpinner.setAdapter(subjectAdapter);
@@ -100,6 +104,7 @@ public class ProgressFragment extends Fragment {
                                         questionsList.add(question);
                                     }
                                     Collections.shuffle(questionsList);
+                                    questionsList.subList(14,questionsList.size() - 1).clear();
                                     progressdialog.dismiss();
                                     Quiz quiz = new Quiz(String.valueOf(System.currentTimeMillis()), subjectSpinner.getText().toString(), 5,questionsList);
                                     intent = new Intent(view.getContext(),McqTestActivity.class);
@@ -120,6 +125,15 @@ public class ProgressFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        viewResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(view.getContext(), TrackResultActivity.class));
+            }
+        });
+
+
 
 
         return view;

@@ -190,4 +190,18 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_results"
+        android:fontFamily="@font/poppins"
+        android:id="@+id/view_results"
+        android:textColor="@color/orange"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:onClick="navigateToResults"
+        android:textStyle="bold"/>
+
+
 </RelativeLayout>

@@ -13,5 +13,8 @@
     <string name="close_drawer">Close navigation drawer</string>
     <string name="about_us">Welcome to our educational app! We are dedicated to providing a personalized learning experience for our users. Our system ensures that users progress effectively by setting a minimum requirement of n levels per subject each semester, with a minimum 50% score in MCQs to advance. If a user doesn\'t meet this criterion, they\'ll revisit the same level.\n\nWe value transparency in learning outcomes. After each MCQ test, detailed results are provided, highlighting incorrectly answered questions and indicating the corresponding lessons or topics. This feedback helps users understand their areas of improvement.\n\nTo enhance the learning journey, our app identifies patterns. After a minimum of three levels, it pinpoints challenging topics for users, encouraging focused study on specific chapters or subjects where consistent mistakes are made. We aim to empower users with targeted insights, ensuring a thorough understanding of their academic progress.\n\nJoin us on this educational adventure, where personalized learning meets comprehensive feedback for continuous improvement.</string>
     <string name="about_us_label">ABOUT US</string>
+    <string name="progress">Progress</string>
+    <string name="home">Home</string>
+    <string name="view_results"><u>View Results</u>.</string>
 
 </resources>
