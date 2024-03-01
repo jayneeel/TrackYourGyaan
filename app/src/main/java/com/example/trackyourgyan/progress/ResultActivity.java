@@ -7,15 +7,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
 import com.example.trackyourgyan.objects.QuizResult;
 import com.example.trackyourgyan.student.StudentDashboardActivity;
 import com.example.trackyourgyan.utils.Helpers;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,13 +32,13 @@ import pl.droidsonroids.gif.GifImageView;
 public class ResultActivity extends AppCompatActivity {
     Quiz quiz;
     HashMap hashMap;
-    TextView score, levelStatus;
+    TextView score, levelStatus, weak_chapters_txt;
     int correctAnsCount, totalQuestions;
     Button testAgainBtn, detailedResultBtn;
     GifImageView gifImageView;
     FirebaseFirestore db;
     FirebaseAuth auth;
-    String userEmail;
+    String userEmail, weakChaptersStr, chaptersList;
     Map<String, String> result=new HashMap<>();
     QuizResult quizResult;
     Timestamp timestamp;
@@ -49,6 +53,7 @@ public class ResultActivity extends AppCompatActivity {
         quiz = (Quiz) getIntent().getSerializableExtra("quizData");
         hashMap = (HashMap) getIntent().getSerializableExtra("result");
         correctAnsCount = getIntent().getIntExtra("correctAnsCount", 0);
+        weakChaptersStr = getIntent().getStringExtra("weakChapter");
         score = findViewById(R.id.score);
         testAgainBtn = findViewById(R.id.test_again_btn);
         levelStatus = findViewById(R.id.level_status_text);
@@ -99,6 +104,23 @@ public class ResultActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    public void showWeakChapters(View view) {
+        showBottomSheet(weakChaptersStr);
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private void showBottomSheet(String weakChaptersStr) {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                this, com.google.android.material.R.style.Theme_Design_Light_BottomSheetDialog);
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(R.layout.modal_bottom_sheet,
+                        (LinearLayout)findViewById(R.id.bottom_sheet_layout));
+        weak_chapters_txt = bottomSheetView.findViewById(R.id.weak_chapter_tv);
+        chaptersList = new Helpers().convertToArrayList(weakChaptersStr);
+        weak_chapters_txt.setText(chaptersList);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 }

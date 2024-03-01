@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".progress.DetailedResultActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chapters_analytics"
+        android:padding="10dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detailed Analytics:"
+            android:id="@+id/detailed_analytics_txt"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="30dp"/>
+
+    </RelativeLayout>
+
     <ExpandableListView
+        android:requiresFadingEdge="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/chapters_analytics"
         android:id="@+id/expandable_result"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

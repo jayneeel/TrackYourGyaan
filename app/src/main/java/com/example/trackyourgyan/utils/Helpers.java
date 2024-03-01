@@ -1,6 +1,7 @@
 package com.example.trackyourgyan.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.trackyourgyan.objects.Question;
 import com.google.gson.Gson;
@@ -9,10 +10,14 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Helpers {
 
@@ -72,5 +77,12 @@ public class Helpers {
         return tsLong.toString();
     }
 
-
+    public String convertToArrayList(String str){
+        Log.d("*********** STR **********", str);
+        String[] elements = str.substring(1,str.length() - 1).split(", ");
+        Log.d("*********** STR **********", elements.toString());
+        Set<String> mySet = new HashSet<String>();
+        Collections.addAll(mySet, elements);
+        return String.join("\n", mySet);
+    }
 }

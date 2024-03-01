@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import com.example.trackyourgyan.R;
 import com.example.trackyourgyan.objects.Quiz;
+import com.example.trackyourgyan.utils.Helpers;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,7 @@ public class McqTestActivity extends AppCompatActivity {
     HashMap<Integer, List<String>> resultMap = new HashMap<>();
     List<String> weakChaptersList;
     Map<String, String> questionResult;
+    Helpers helpers = new Helpers();
 
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +51,7 @@ public class McqTestActivity extends AppCompatActivity {
         nextBtn = findViewById(R.id.next_btn);
         backBtn = findViewById(R.id.previous_question_btn);
         questionCount = findViewById(R.id.question_count_txt);
+        weakChaptersList = new ArrayList<>();
         loadQuestions(1);
         new CountDownTimer(900000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -93,6 +97,7 @@ public class McqTestActivity extends AppCompatActivity {
         intent.putExtra("result", resultMap);
         intent.putExtra("quizData", quiz);
         intent.putExtra("correctAnsCount", correctAnsCount);
+        intent.putExtra("weakChapter", weakChaptersList.toString());
 //            intent.putCharSequenceArrayListExtra("resultData", resultList);
         startActivity(intent);
     }
@@ -115,6 +120,8 @@ public class McqTestActivity extends AppCompatActivity {
         String result = (selectedAns.equals(quiz.quizQuestions.get(currentIndex).correct)) ? "CORRECT" : "INCORRECT";
         if (result.equals("CORRECT")){
             correctAnsCount += 1;
+        }else{
+            weakChaptersList.add(helpers.getSubjectChaptersMap().get(quiz.title).get(quiz.quizQuestions.get(currentIndex).chapter - 1));
         }
         resultMap.put(questionNumber, Arrays.asList(result, selectedAns,String.valueOf(quiz.quizQuestions.get(currentIndex).chapter)));
         Log.d("EXAM***********", "checkAns: "+resultMap.keySet());
