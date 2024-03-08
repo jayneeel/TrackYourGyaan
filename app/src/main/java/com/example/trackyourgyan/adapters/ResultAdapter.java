@@ -1,5 +1,8 @@
 package com.example.trackyourgyan.adapters;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackyourgyan.PastDetailResultActivity;
 import com.example.trackyourgyan.R;
+import com.example.trackyourgyan.interfaces.MyItemClick;
 import com.example.trackyourgyan.objects.QuizResult;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -17,9 +22,12 @@ import java.util.ArrayList;
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHolder> {
     ArrayList<QuizResult> quizResultArrayList;
     FirebaseFirestore db;
+    MyItemClick onClick;
 
-    public ResultAdapter(ArrayList<QuizResult> quizResultArrayList) {
+
+    public ResultAdapter(ArrayList<QuizResult> quizResultArrayList, MyItemClick onclick) {
         this.quizResultArrayList = quizResultArrayList;
+        this.onClick = onclick;
     }
 
     @NonNull
@@ -31,10 +39,16 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
             holder.title.setText(quizResultArrayList.get(position).getSubject());
             holder.score.setText("Score : "+String.valueOf(quizResultArrayList.get(position).getScore()));
             holder.timestamp.setText(quizResultArrayList.get(position).getTimestamp());
+            holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClick.onItemClick(quizResultArrayList.get(position).getTimestamp(), position + 1);
+                }
+            });
     }
 
     @Override
