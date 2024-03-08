@@ -21,6 +21,8 @@ import java.util.Set;
 
 public class Helpers {
 
+    public String[] ADMIN_SUBJECTS = {"Physics","Advance Java", "EVS", "Management", "ETI"};
+    public String[] OPTIONS = {"A","B","C","D"};
     public String[] FIRST_YEAR_SUBJECTS = {"Physics"};
     public String[] THIRD_YEAR_SUBJECTS = {"Advance Java", "EVS", "Management", "ETI"};
     public String[] PHYSICS_CHAPTERS = {"Units and Measurements", "Electricity,magnetism and semiconductors", "Heat and Optics"};
@@ -98,12 +100,14 @@ public class Helpers {
         return stringKeyMap;
     }
 
-    public List<String[]> convertToQuestionList(List<Question> questionsList){
-        ArrayList<String[]> questionDbList = new ArrayList<>();
-        for(Question question : questionsList){
-        String[] questionAnswer ={question.question, question.correct};
-        questionDbList.add(questionAnswer);
+    public Map<String, List<String>> convertToQuestionList(List<Question> questionsList){
+        Map<String, List<String>> questionAnswerMap = new HashMap<>();
+        for (Question question: questionsList){
+            List<String> questionAnswerList = new ArrayList<>();
+            questionAnswerList.add(question.question);
+            questionAnswerList.add(question.correct);
+            questionAnswerMap.put(String.valueOf(questionsList.indexOf(question)), questionAnswerList);
         }
-        return questionDbList;
+        return questionAnswerMap;
     }
 }

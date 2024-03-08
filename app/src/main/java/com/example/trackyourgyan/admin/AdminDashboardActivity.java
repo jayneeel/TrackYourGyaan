@@ -16,6 +16,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements OnNavig
     private BottomNavigationView bottomNavigationView;
     private StudentListFragment studentListFragment;
     private AdminAnnouncementsFragment adminAnnouncementsFragment;
+    private AddQuestionFragment addQuestionFragment;
     private FirebaseFirestore db;
 
     @Override
@@ -25,6 +26,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements OnNavig
         bottomNavigationView = findViewById(R.id.admin_bnav);
         studentListFragment = new StudentListFragment();
         adminAnnouncementsFragment = new AdminAnnouncementsFragment();
+        addQuestionFragment = new AddQuestionFragment();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.students);
         db = FirebaseFirestore.getInstance();
@@ -39,6 +41,9 @@ public class AdminDashboardActivity extends AppCompatActivity implements OnNavig
 
         }else if(item.getItemId() == R.id.announcements){
             getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_container, adminAnnouncementsFragment).commit();
+            return true;
+        }else if(item.getItemId() == R.id.questions){
+            getSupportFragmentManager().beginTransaction().replace(R.id.admin_frame_container, addQuestionFragment).commit();
             return true;
         }
         return false;

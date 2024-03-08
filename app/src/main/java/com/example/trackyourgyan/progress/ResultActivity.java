@@ -100,6 +100,7 @@ public class ResultActivity extends AppCompatActivity {
                 intent.putExtra("quizData", quiz);
                 intent.putExtra("correctAnsCount", correctAnsCount);
                 db.collection("results").document(auth.getCurrentUser().getEmail()).collection(quizResult.getSubject()).document("Level "+(settings.getInt("currentLevel",0))+"_"+quizResult.getTimestamp()).collection("DETAILED_RESULT").document("result").set(new Helpers().convertMap(hashMap));
+                db.collection("results").document(auth.getCurrentUser().getEmail()).collection(quizResult.getSubject()).document("Level "+(settings.getInt("currentLevel",0))+"_"+quizResult.getTimestamp()).collection("DETAILED_RESULT").document("questions").set(new Helpers().convertToQuestionList(quiz.quizQuestions));
                 startActivity(intent);
 
             }
