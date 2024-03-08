@@ -85,4 +85,25 @@ public class Helpers {
         Collections.addAll(mySet, elements);
         return String.join("\n", mySet);
     }
+
+    public HashMap<String, List> convertMap(HashMap<Integer, List> hashMap){
+        HashMap<String, List> stringKeyMap = new HashMap<>();
+
+        // Convert keys from integer to string
+        for (Integer key : hashMap.keySet()) {
+            String stringKey = key.toString();
+            List value = hashMap.get(key);
+            stringKeyMap.put(stringKey, value);
+        }
+        return stringKeyMap;
+    }
+
+    public List<String[]> convertToQuestionList(List<Question> questionsList){
+        ArrayList<String[]> questionDbList = new ArrayList<>();
+        for(Question question : questionsList){
+        String[] questionAnswer ={question.question, question.correct};
+        questionDbList.add(questionAnswer);
+        }
+        return questionDbList;
+    }
 }

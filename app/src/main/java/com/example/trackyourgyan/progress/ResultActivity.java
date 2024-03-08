@@ -49,7 +49,6 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-        Log.d("RESUUUUUUUUUULLT","*******STARTED**************");
         quiz = (Quiz) getIntent().getSerializableExtra("quizData");
         hashMap = (HashMap) getIntent().getSerializableExtra("result");
         correctAnsCount = getIntent().getIntExtra("correctAnsCount", 0);
@@ -100,6 +99,7 @@ public class ResultActivity extends AppCompatActivity {
                 intent.putExtra("result", hashMap);
                 intent.putExtra("quizData", quiz);
                 intent.putExtra("correctAnsCount", correctAnsCount);
+                db.collection("results").document(auth.getCurrentUser().getEmail()).collection(quizResult.getSubject()).document("Level "+(settings.getInt("currentLevel",0))+"_"+quizResult.getTimestamp()).collection("DETAILED_RESULT").document("result").set(new Helpers().convertMap(hashMap));
                 startActivity(intent);
 
             }
